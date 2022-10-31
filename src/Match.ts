@@ -67,7 +67,12 @@ export class Match {
             playerTwo: null,
             active: false,
             winnersPath: null,
-            losersPath: null 
+            losersPath: null,
+            result: {
+                playerOneWins: 0,
+                playerTwoWins: 0,
+                draws: 0
+            }
         }, opt);
 
         this.id = options.id;
@@ -76,11 +81,7 @@ export class Match {
         this.playerOne = options.playerOne;
         this.playerTwo = options.playerTwo;
         this.active = options.active;
-        this.result = {
-            playerOneWins: 0,
-            playerTwoWins: 0,
-            draws: 0
-        };
+        this.result = options.result;
         this.winnersPath = options.winnersPath;
         this.losersPath = options.losersPath;
     }

@@ -107,33 +107,43 @@ export class Player {
         // Default values
         let options = Object.assign({
             seed: 0,
-            initialByes: 0
+            initialByes: 0,
+            pairingBye: false,
+            pairUpDown: false,
+            matchCount: 0,
+            matchPoints: 0,
+            gameCount: 0,
+            gamePoints: 0,
+            active: true,
+            bsn: 0,
+            results: [],
+            tiebreakers: {
+                medianBuchholz: 0,
+                solkoff: 0,
+                sonnebornBerger: 0,
+                cumulative: 0,
+                oppCumulative: 0,
+                matchWinPct: 0,
+                oppMatchWinPct: 0,
+                oppOppMatchWinPct: 0,
+                gameWinPct: 0,
+                oppGameWinPct: 0
+            }
         }, opt);
 
         this.id = options.id;
         this.alias = options.alias;
         this.seed = options.seed;
         this.initialByes = options.initialByes;
-        this.pairingBye = false;
-        this.pairUpDown = false;
-        this.matchCount = 0;
-        this.matchPoints = 0;
-        this.gameCount = 0;
-        this.gamePoints = 0;
-        this.active = true;
-        this.bsn = 0;
-        this.results = [];
-        this.tiebreakers = {
-            medianBuchholz: 0,
-            solkoff: 0,
-            sonnebornBerger: 0,
-            cumulative: 0,
-            oppCumulative: 0,
-            matchWinPct: 0,
-            oppMatchWinPct: 0,
-            oppOppMatchWinPct: 0,
-            gameWinPct: 0,
-            oppGameWinPct: 0
-        }
+        this.pairingBye = options.pairingBye;
+        this.pairUpDown = options.pairUpDown;
+        this.matchCount = options.matchCount;
+        this.matchPoints = options.matchPoints;
+        this.gameCount = options.gameCount;
+        this.gamePoints = options.gamePoints;
+        this.active = options.active;
+        this.bsn = options.bsn;
+        this.results = options.results;
+        this.tiebreakers = options.tiebreakers;
     }
 }

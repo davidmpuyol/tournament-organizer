@@ -157,7 +157,12 @@ class Tournament implements Structure {
             consolation: false,
             playerLimit: 0,
             pointsForWin: 1,
-            pointsForDraw: 0.5
+            pointsForDraw: 0.5,
+            startTime: new Date(Date.now()),
+            currentRound: 0,
+            players: [],
+            matches: [],
+            status: 'registration'
         }, opt);
         
         this.id = options.id;
@@ -168,11 +173,27 @@ class Tournament implements Structure {
         this.playerLimit = options.playerLimit;
         this.pointsForWin = options.pointsForWin;
         this.pointsForDraw = options.pointsForDraw;
-        this.startTime = new Date(Date.now());
-        this.currentRound = 0;
+        this.startTime = options.startTime;
+        this.currentRound = options.currentRound;
         this.players = [];
         this.matches = [];
-        this.status = 'registration';
+        this.status = options.status;
+
+        if(options.players){
+            var _this = this;
+            options.players.forEach(function(player){
+                var newPlayer = new Player_js_1.Player(player);
+                _this.players.push(newPlayer);
+            })
+        }
+
+        if(options.matches){
+            var _this = this;
+            options.matches.forEach(function(match){
+                var newMatch = new Match(match);
+                _this.matches.push(newMatch);
+            })
+        }
     }
 
     /**
@@ -1372,12 +1393,14 @@ class Elimination extends Tournament {
 
         // Default values
         let options = Object.assign({
-            double: false
+            double: false,
+            bestOf: 1,
+            tiebreakers: []
         }, opt);
 
         this.double = options.double;
-        this.bestOf = 1;
-        this.tiebreakers = [];
+        this.bestOf = options.bestOf;
+        this.tiebreakers = options.tiebreakers;
     }
 
     /**
